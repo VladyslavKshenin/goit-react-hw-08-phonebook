@@ -28,17 +28,17 @@ export const contactsSlice = createSlice({
 
       .addCase(fetchContactsAction.fulfilled, (state, action) => {
         state.contacts = action.payload;
-          state.isLoading = false;
-          state.error = null;
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(addContactAction.fulfilled, (state, action) => {
         state.isLoading = false;
-          state.contacts.push(action.payload);
-          state.error = null;
+        state.contacts.push(action.payload);
+        state.error = null;
       })
       .addCase(deleteContactAction.fulfilled, (state, action) => {
-          state.isLoading = false;
-          state.error = null;
+        state.isLoading = false;
+        state.error = null;
         state.contacts = state.contacts.filter(
           contact => contact.id !== action.payload.id
         );
