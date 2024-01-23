@@ -31,11 +31,17 @@ const authSlice = createSlice({
 
         state.isLoading = false;
       })
-      .addCase(logIn.fulfilled, (state, action) => {
+        .addCase(logIn.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
         state.isLoading = false;
       })
-      .addCase(logOut.fulfilled, (state, action) => {
+      .addCase(logOut.fulfilled, state => {
         state.isLoading = false;
+        state.user = { name: null, email: null };
+        state.token = null;
+        state.isLoggedIn = false;
       })
       .addMatcher(action => action.type.endsWith('pending'), handlePending)
       .addMatcher(action => action.type.endsWith('rejected'), handleRejected);
